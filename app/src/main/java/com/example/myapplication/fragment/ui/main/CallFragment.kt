@@ -60,6 +60,7 @@ class CallFragment : Fragment() {
         val selectButton = view.findViewById<Button>(R.id.makeACall)
 
         selectButton.setOnClickListener {
+            requireActivity().registerReceiver(serviceReceiver, IntentFilter(TelephonyManager.ACTION_PHONE_STATE_CHANGED))
             // Open the activity to select an image
             observer.makeCall()
         }
@@ -68,7 +69,6 @@ class CallFragment : Fragment() {
     // All Functions call
     override fun onResume() {
         Log.d("Jaydev","Call fragment onResume")
-        requireActivity().registerReceiver(serviceReceiver, IntentFilter(TelephonyManager.ACTION_PHONE_STATE_CHANGED))
         super.onResume()
     }
 
@@ -100,11 +100,10 @@ class MyLifecycleObserver(private val registry: ActivityResultRegistry) : Defaul
     override fun onCreate(owner: LifecycleOwner) {
         mStartForResult = registry.register("1001", owner, ActivityResultContracts.StartActivityForResult()){
             result ->
-            //if (result.resultCode == Activity.RESULT_OK) {
-                val data = result.data
+            //  Todo get something that confirms this call
+                val data = result.data?.data
                 // Handle the Intent
                 Log.d("jaydev", "data $data")
-            //}
         }
     }
 

@@ -26,11 +26,12 @@ class CallActivity : AppCompatActivity() {
     }
 
 
-//    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
-//        if(requestCode == 1001){
-//            Log.d("Jaydev","requestCode + $requestCode")
-//            Toast.makeText(this,"made call + $resultCode", Toast.LENGTH_LONG).show()
-//        }
-//        super.onActivityResult(requestCode, resultCode, data)
-//    }
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        Log.d("Jaydev","requestCode + $requestCode")
+        if(requestCode == 1001){
+            //Log.d("Jaydev","requestCode + $requestCode")
+            Toast.makeText(this,"made call + $resultCode", Toast.LENGTH_LONG).show()
+        }
+        super.onActivityResult(requestCode, resultCode, data)
+    }
 }
